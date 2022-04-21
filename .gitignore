@@ -6,6 +6,7 @@
 /zip.in
 *.nes.deb
 /map.txt
+/mapalt.txt
 /nsfmap.txt
 __pycache__/
 *.pyc
@@ -13,4 +14,6 @@ __pycache__/
 # this is NES homebrew, not DSiWare
 *.DS_Store
 
-
+auto_snrom2mbit.cfg
+auto_uorom2mbit.cfg
+*.dbg

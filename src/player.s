@@ -191,8 +191,8 @@ doneWallCollision:
 .endproc
 
 
-; We put this in bank 2 to test the bankcall mechanism
-.segment "BANK02"
+; We put this in another bank to test the bankcall mechanism
+.segment "DrawSpriteTest"
 .export draw_player_sprite_far
 ;;
 ; Draws the player's character to the display list as six sprites.

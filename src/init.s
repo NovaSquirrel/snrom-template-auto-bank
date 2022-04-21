@@ -81,7 +81,7 @@ vwait2:
   ; PPUSTATUS at the exact moment that the bit turns on, it'll flip
   ; from off to on to off faster than the CPU can see.
 
-  lda #4
+  lda #<.bank(main)
   jsr setPRGBank
   jmp main
 .endproc

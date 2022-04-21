@@ -45,7 +45,7 @@ new_keys:      .res 2
   rti
 .endproc
 
-.segment "BANK04"
+.segment "MainLoop"
 
 .proc main
 

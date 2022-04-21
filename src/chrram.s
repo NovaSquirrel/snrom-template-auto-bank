@@ -11,7 +11,7 @@
 .include "mmc1.inc"
 .export load_chr_ram_far
 
-.segment "BANK13"
+.segment "Graphics"
 template_chr:
   .incbin "obj/nes/bggfx.chr"
   .incbin "obj/nes/spritegfx.chr"

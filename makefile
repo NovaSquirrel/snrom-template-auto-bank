@@ -24,7 +24,7 @@ pads ppuclear unrom chrram bankcalltable
 
 AS65 = ca65
 LD65 = ld65
-CFLAGS65 = 
+CFLAGS65 = -g
 objdir = obj/nes
 srcdir = src
 imgdir = tilesets
@@ -93,11 +93,15 @@ clean:
 objlisto = $(foreach o,$(objlist),$(objdir)/$(o).o)
 objlistalto = $(foreach o,$(objlistalt),$(objdir)/$(o).o)
 
-map.txt $(title).nes: snrom2mbit.cfg $(objlisto)
-	$(LD65) -o $(title).nes -m map.txt -C $^
+auto_snrom2mbit.cfg: snrom2mbit.cfg $(objlisto)
+	$(PY) tools/uncle_fill.py unrom:16 auto_snrom2mbit.cfg $^
+map.txt $(title).nes: auto_snrom2mbit.cfg $(objlisto)
+	$(LD65) -o $(title).nes --dbgfile $(title).dbg -m map.txt -C $^
 
-mapalt.txt $(titlealt).nes: uorom2mbit.cfg $(objlistalto)
-	$(LD65) -o $(titlealt).nes -m mapalt.txt -C $^
+auto_uorom2mbit.cfg: uorom2mbit.cfg $(objlistalto)
+	$(PY) tools/uncle_fill.py unrom:16 auto_uorom2mbit.cfg $^
+mapalt.txt $(titlealt).nes: auto_uorom2mbit.cfg $(objlistalto)
+	$(LD65) -o $(titlealt).nes --dbgfile $(titlealt).dbg -m mapalt.txt -C $^
 
 $(objdir)/%.o: $(srcdir)/%.s $(srcdir)/nes.inc $(srcdir)/global.inc $(srcdir)/mmc1.inc
 	$(AS65) $(CFLAGS65) $< -o $@
